@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JAVASCRIP Tasks</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e3f2fd;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0d47a1;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      background: #ffffff;
+      border: 1px solid #cfd8dc;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 500px;
+      border-radius: 8px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 20px;
+      color: #1565c0;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 8px 0;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #b0bec5;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      background: #42a5f5;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #1e88e5;
+    }
+
+    img {
+      display: block;
+      margin: 10px auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    #text {
+      text-align: center;
+      font-size: 20px;
+      color: #37474f;
+    }
+
+    #datetime {
+      text-align: center;
+      font-weight: bold;
+      color: #455a64;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript: DOM & Events</h1>
+
+  <div class="section">
+    <h2>Basic Info Form </h2>
+    <input type="text" id="name" placeholder="Name">
+    <input type="email" id="email" placeholder="Email">
+    <input type="number" id="age" placeholder="Age">
+    <button onclick="showInfo()">Submit</button>
+    <div id="result"></div>
+  </div>
+
+  <div class="section">
+    <h2>Change Image</h2>
+    <img id="myImage" src="image1.jpg" alt="Image">
+    <button onclick="changeImage()">Change Image</button>
+  </div>
+
+  <div class="section">
+    <h2>Font Size Control</h2>
+    <p id="text">Change my font size!</p>
+    <div class="buttons">
+      <button onclick="increaseFont()">A+</button>
+      <button onclick="decreaseFont()">A-</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2> Current Date & Time</h2>
+    <p id="datetime"></p>
+  </div>
+
+  <script>
+    function showInfo() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const age = document.getElementById("age").value;
+      document.getElementById("result").innerHTML = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Age:</strong> ${age}</p>
+      `;
+    }
+
+    const imageUrls = ["photo1.jpg", "photo2.webp", "photo3.webp", "photo4.webp", "photo5.webp", "photo6.jpeg"];
+    let currentIndex = 0;
+
+    function changeImage() {
+      currentIndex = (currentIndex + 1) % imageUrls.length;
+      document.getElementById("myImage").src = imageUrls[currentIndex];
+    }
+
+    let fontSize = 20;
+
+    function increaseFont() {
+      fontSize += 2;
+      document.getElementById("text").style.fontSize = fontSize + "px";
+    }
+
+    function decreaseFont() {
+      fontSize -= 2;
+      document.getElementById("text").style.fontSize = fontSize + "px";
+    }
+
+    function updateDateTime() {
+      const now = new Date();
+      document.getElementById("datetime").innerText = now.toLocaleString();
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  </script>
+
+</body>
+</html>
